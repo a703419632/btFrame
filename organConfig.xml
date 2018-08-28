@@ -15,8 +15,8 @@
     -->
     <buytype>none</buytype>
     <selltype>none</selltype>
-    <!-- fee税率 -->
-    <fee>0.001</fee>
+    <!-- feeRatio税率 -->
+    <feeRatio>0.001</feeRatio>
     <!-- capital初始资金 -->
     <capital>1</capital>
     <!-- pos初始仓位 -->
@@ -35,11 +35,11 @@
     <neuron>neuron1,neuron2</neuron>
     <buytype>neuron1 &amp; neuron2</buytype>
     <selltype>neuron1 &amp; neuron2</selltype>
-    <fee>0.001</fee>
+    <feeRatio>0.001</feeRatio>
     <capital>1</capital>
     <pos>0</pos>
     <buyonce>0</buyonce>
-    <buyonce>0</buyonce>
+    <sellonce>0</sellonce>
     <auth>pans</auth>
     <date>2018/8/27</date>
     <description>这是一个多神经元器官的示例</description>
