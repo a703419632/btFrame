@@ -1,4 +1,5 @@
 #coding=utf-8
+#author: pans
 from xml.dom.minidom import parse
 import xml.dom.minidom
 
