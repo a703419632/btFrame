@@ -1,0 +1,47 @@
+<collection shelf="organConfig">
+<![CDATA[
+]]>
+<organ>
+    <!-- name作为唯一标识符 -->
+    <name>example</name>
+    <!-- neuron必须和baseneuron.xml里的name一致并且存在,多个用逗号分割 -->
+    <neuron>neuron1</neuron>  
+    <!-- type用来区分多个神经元之间的关系，如果为单个神经元写none
+    &lt; < 小于号
+    &gt; > 大于号
+    &amp; & 和
+    &apos; ' 单引号
+    &quot; " 双引号 
+    -->
+    <buytype>none</buytype>
+    <selltype>none</selltype>
+    <!-- fee税率 -->
+    <fee>0.001</fee>
+    <!-- capital初始资金 -->
+    <capital>1</capital>
+    <!-- pos初始仓位 -->
+    <pos>0</pos>
+    <!-- buyonce单次购买金额，0为全仓买 -->
+    <buyonce>0</buyonce>
+    <!-- sellonce单次购买金额，0为全仓卖 -->
+    <sellonce>0</sellonce>
+    <auth>pans</auth>
+    <date>2018/8/27</date>
+    <description>这是一个单神经元器官的示例</description>
+</organ>
+
+<organ>
+    <name>multiple-example</name>
+    <neuron>neuron1,neuron2</neuron>
+    <buytype>neuron1 &amp; neuron2</buytype>
+    <selltype>neuron1 &amp; neuron2</selltype>
+    <fee>0.001</fee>
+    <capital>1</capital>
+    <pos>0</pos>
+    <buyonce>0</buyonce>
+    <buyonce>0</buyonce>
+    <auth>pans</auth>
+    <date>2018/8/27</date>
+    <description>这是一个多神经元器官的示例</description>
+</organ>
+</collection>
