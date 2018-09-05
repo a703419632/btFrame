@@ -5,6 +5,7 @@ import xml.dom.minidom
 import glob
 import os
 import sys
+import time
 
 class Neuron(object):
     def __init__(self,data):
@@ -16,7 +17,7 @@ class Neuron(object):
         self.date = data.getElementsByTagName("date")[0].childNodes[0].data
         self.description = data.getElementsByTagName("description")[0].childNodes[0].data
         self.module = __import__(self.source)
-        print('a new neuron is created,name:%s,auth:%s,date:%s,description:%s' % (self.name,self.auth,self.date,self.description))
+        print('a new neuron is created,name:%s,auth:%s,date:%s,description:%s,time:%s' % (self.name,self.auth,self.date,self.description,time.time()))
 
 
     def buy(self,priceFrm):

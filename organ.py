@@ -4,15 +4,13 @@ from xml.dom.minidom import parse
 import xml.dom.minidom
 import pandas as pd
 from pandas import DataFrame
+import time
 
 from neuron import *
-from EventNotifier import *
-from EventBase import EventBase
+from EventManager import *
 
-OnHeartBeat = DataEvent('OnHeartBeat')
-
-class Organ(EventBase):
-    def __init__(self,data,neuronDict):
+class Organ(object):
+    def __init__(self,data,neuronXMLDict):
         super(Organ, self).__init__()
 
         self.name = data.getElementsByTagName("name")[0].childNodes[0].data
@@ -29,17 +27,16 @@ class Organ(EventBase):
         self.description = data.getElementsByTagName("description")[0].childNodes[0].data
         self.neuronDict = {}
         for neu in self.neuronList:
-            if neu in neuronDict:
-                self.neuronDict[neu] = neuronDict[neu]
+            if neu in neuronXMLDict:
+                self.neuronDict[neu] = Neuron(neuronXMLDict[neu])
 
         self.valRows = []
-        print('a new organ is created,name:%s,auth:%s,date:%s,description:%s' % (self.name,self.auth,self.date,self.description))
+        print('a new organ is created,name:%s,auth:%s,date:%s,description:%s,time:%s' % (self.name,self.auth,self.date,self.description,time.time()))
 
-    @data_listener(OnHeartBeat)
     def getHeartBeat(self,priceFrm):
-
+        
         openTime = priceFrm.loc[len(priceFrm)-1,'OpenTime']
-        curPrice = float(priceFrm.loc[len(priceFrm)-1,'Close'])
+        curPrice = float(priceFrm.loc[len(priceFrm)-1,'Open'])
 
         if self.buy(priceFrm):
             newPos = (min(self.capital,self.buyonce) if self.buyonce>0 else self.capital) / (curPrice*(1+self.feeRatio))
@@ -74,5 +71,6 @@ class Organ(EventBase):
                 newstr = newstr.replace(string,'self.neuronDict[\'%s\'].sell(priceFrm)' % string)
             return eval(newstr)
 
-
-        
+    def __del__(self):
+        class_name = self.__class__.__name__
+        print(self.name, '销毁')
