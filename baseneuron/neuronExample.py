@@ -7,11 +7,19 @@ import time
 #this is an example
 #用到所有所需的参数的命名必须统一
 #'OpenTime','Open','High','Low','Close','Volume'
-#buy和sell必须有返回True或者False
+#交易模块必须返回以下条件之一
+#buy 买入
+#sell 卖出
+#shortbuy 做空买入
+#shortsell 做空卖出
+#none 无需操作
 
-def buy(priceFrm):
-    return len(priceFrm)%4 == 0
 
-def sell(priceFrm):
-    return len(priceFrm)%3 == 0
+def simuTrade(priceFrm):
+    if len(priceFrm)%4 == 0:
+        return 'buy'
+    elif len(priceFrm)%3 == 0:
+        return 'sell'
+    else:
+        return 'none'
 

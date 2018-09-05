@@ -34,17 +34,19 @@ class Organ(object):
         print('a new organ is created,name:%s,auth:%s,date:%s,description:%s,time:%s' % (self.name,self.auth,self.date,self.description,time.time()))
 
     def getHeartBeat(self,priceFrm):
-        
+       
+        result = self.tradeResult(priceFrm)
+
         openTime = priceFrm.loc[len(priceFrm)-1,'OpenTime']
         curPrice = float(priceFrm.loc[len(priceFrm)-1,'Open'])
 
-        if self.buy(priceFrm):
+        if result == 'buy':
             newPos = (min(self.capital,self.buyonce) if self.buyonce>0 else self.capital) / (curPrice*(1+self.feeRatio))
             self.pos += newPos
             curFee = curPrice*newPos*self.feeRatio
             self.capital -= (curPrice*newPos+curFee)
             self.valRows.append([openTime,curPrice,self.pos,self.capital,curFee,'buy %s' % newPos])
-        elif self.sell(priceFrm):
+        elif result == 'sell':
             sellPos = min(self.pos,self.sellonce) if self.sellonce>0 else self.pos
             curFee = curPrice*curPrice*sellPos
             self.capital += (curPrice*sellPos-curFee)
@@ -52,6 +54,25 @@ class Organ(object):
             self.valRows.append([openTime,curPrice,self.pos,self.capital,curFee,'sell %s' % sellPos])
 
         DataFrame(self.valRows,columns=['time','Price','Pos','Capital','Fee','des']).to_pickle('./result/val_%s.pkl' % self.name)
+
+    def tradeResult(self,priceFrm):
+        if len(self.neuronDict) <= 1:
+            return self.neuronDict[self.neuronList[0]].trade(priceFrm)
+        else:
+            newstr = self.buytype
+            for string in self.neuronList:
+                newstr = newstr.replace(string,eval('self.neuronDict[\'%s\'].trade(priceFrm)' % string))
+            
+            if eval(newstr.replace('buy','True').replace('sell','False').replace('none','False').replace('shortbuy','False').replace('shortsell','False')):
+                return 'buy'
+            elif eval(newstr.replace('sell','True').replace('buy','False').replace('none','False').replace('shortbuy','False').replace('shortsell','False')):
+                return 'sell'
+            elif eval(newstr.replace('shortbuy','True').replace('sell','False').replace('none','False').replace('buy','False').replace('shortsell','False')):
+                return 'shortbuy'
+            elif eval(newstr.replace('shortsell','True').replace('sell','False').replace('none','False').replace('shortbuy','False').replace('buy','False')):
+                return 'shortsell'
+            else:
+                return ''
 
     def buy(self,priceFrm):
         if len(self.neuronDict) <= 1:
