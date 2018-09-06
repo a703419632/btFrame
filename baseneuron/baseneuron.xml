@@ -4,10 +4,8 @@
     <name>neuron1</name>
     <!-- source是.py文件的名字 -->
     <source>neuronExample</source>
-    <!-- buymodule买入模块函数名，有且唯一，默认buy -->
-    <buymodule>buy</buymodule>
-    <!-- sellmodule卖出模块函数名，有且唯一，默认sell -->
-    <sellmodule>sell</sellmodule>
+    <!-- trademodule交易模块函数名，有且唯一，默认simuTrade -->
+    <trademodule>simuTrade</trademodule>
     <auth>pans</auth>
     <date>2018/8/27</date>
     <description>这是神经元1号示例</description>
@@ -15,10 +13,17 @@
 <neuron>
     <name>neuron2</name>
     <source>moveAvgExample</source>
-    <buymodule>buy</buymodule>
-    <sellmodule>sell</sellmodule>
+    <trademodule>simuTrade</trademodule>
     <auth>pans</auth>
     <date>2018/8/27</date>
     <description>这是神经元2号示例</description>
+</neuron>
+<neuron>
+    <name>neuron3</name>
+    <source>neuronShortExample</source>
+    <trademodule>simuTrade</trademodule>
+    <auth>pans</auth>
+    <date>2018/9/6</date>
+    <description>这是神经元3号示例</description>
 </neuron>
 </collection>

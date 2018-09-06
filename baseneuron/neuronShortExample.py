@@ -5,7 +5,7 @@ import numpy as np
 import time
 
 '''
-@@这是一个简单的例子
+@@这是一个简单的做空例子
 
 
 用到所有所需的参数的命名必须统一
@@ -22,7 +22,7 @@ def simuTrade(priceFrm):
     if len(priceFrm)%7 == 0:
         return 'shortsell'
     elif len(priceFrm)%6 == 0:
-        return 'shortsell'
+        return 'shortbuy'
     else:
         return 'none'
 

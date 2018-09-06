@@ -1,6 +1,7 @@
 <collection shelf="organConfig">
-<![CDATA[
-]]>
+
+
+
 <organ>
     <!-- name作为唯一标识符 -->
     <name>example</name>
@@ -15,16 +16,24 @@
     -->
     <buytype>none</buytype>
     <selltype>none</selltype>
+    <shortbuytype>none</shortbuytype>
+    <shortselltype>none</shortselltype>
     <!-- feeRatio税率 -->
     <feeRatio>0.001</feeRatio>
     <!-- capital初始资金 -->
     <capital>1</capital>
     <!-- pos初始仓位 -->
     <pos>0</pos>
-    <!-- buyonce单次购买金额，0为全仓买 -->
+    <!-- buyonce单次购买仓位数量，0为全仓买 -->
     <buyonce>0</buyonce>
-    <!-- sellonce单次购买金额，0为全仓卖 -->
+    <!-- sellonce单次出售仓位数量，0为全仓卖 -->
     <sellonce>0</sellonce>
+    <!-- shortmax做空最大借币数量 -->
+    <shortmax>1</shortmax>
+    <!-- shortbuyonce单次做空借币数量，0为全仓买 -->
+    <shortbuyonce>1</shortbuyonce>
+    <!-- shortsellonce做空单次出售仓位数量，0为全仓卖 -->
+    <shortsellonce>0</shortsellonce>
     <auth>pans</auth>
     <date>2018/8/27</date>
     <description>这是一个单神经元器官的示例</description>
@@ -33,15 +42,43 @@
 <organ>
     <name>multiple-example</name>
     <neuron>neuron1,neuron2</neuron>
-    <buytype>neuron1 &amp; neuron2</buytype>
-    <selltype>neuron1 &amp; neuron2</selltype>
+    <buytype>neuron1 and neuron2</buytype>
+    <selltype>neuron1 and neuron2</selltype>
+    <shortbuytype>none</shortbuytype>
+    <shortselltype>none</shortselltype>
     <feeRatio>0.001</feeRatio>
     <capital>1</capital>
     <pos>0</pos>
     <buyonce>0</buyonce>
     <sellonce>0</sellonce>
+    <shortmax>1</shortmax>
+    <shortbuyonce>1</shortbuyonce>
+    <shortsellonce>0</shortsellonce>
     <auth>pans</auth>
     <date>2018/8/27</date>
     <description>这是一个多神经元器官的示例</description>
 </organ>
+
+<organ>
+    <name>short-example</name>
+    <neuron>neuron3</neuron>
+    <buytype>none</buytype>
+    <selltype>none</selltype>
+    <shortbuytype>none</shortbuytype>
+    <shortselltype>none</shortselltype>
+    <feeRatio>0.001</feeRatio>
+    <capital>1</capital>
+    <pos>0</pos>
+    <buyonce>0</buyonce>
+    <sellonce>0</sellonce>
+    <shortmax>10000</shortmax>
+    <shortbuyonce>0</shortbuyonce>
+    <shortsellonce>0</shortsellonce>
+    <auth>pans</auth>
+    <date>2018/9/6</date>
+    <description>这是一个做空的示例</description>
+</organ>
+
+<![CDATA[
+]]>
 </collection>

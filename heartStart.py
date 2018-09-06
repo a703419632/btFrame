@@ -22,7 +22,7 @@ def heartBeatFromLocal(blood):
     print(data)
 
     for indexs in data.index:
-        if indexs <= 1:
+        if indexs <= 2:
             continue
 
         blood.eventManager.SendEvent('OnHeartBeat',data.loc[0:indexs])
