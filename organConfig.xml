@@ -7,6 +7,12 @@
     <name>example</name>
     <!-- neuron必须和baseneuron.xml里的name一致并且存在,多个用逗号分割 -->
     <neuron>neuron1</neuron>  
+    <!-- cointype测试币种 -->
+    <cointype>btcusdt</cointype>
+    <!-- timetype时间间隔 
+    1m    3m    5m    15m    30m    1h    2h    4h
+    6h    8h    12h    1d    3d    1w    1M    -->
+    <timetype>1m</timetype>
     <!-- type用来区分多个神经元之间的关系，如果为单个神经元写none
     &lt; < 小于号
     &gt; > 大于号
@@ -42,6 +48,8 @@
 <organ>
     <name>multiple-example</name>
     <neuron>neuron1,neuron2</neuron>
+    <cointype>btcusdt</cointype>
+    <timetype>1m</timetype>
     <buytype>neuron1 and neuron2</buytype>
     <selltype>neuron1 and neuron2</selltype>
     <shortbuytype>none</shortbuytype>
@@ -62,6 +70,8 @@
 <organ>
     <name>short-example</name>
     <neuron>neuron3</neuron>
+    <cointype>btcusdt</cointype>
+    <timetype>5m</timetype>
     <buytype>none</buytype>
     <selltype>none</selltype>
     <shortbuytype>none</shortbuytype>
@@ -78,7 +88,7 @@
     <date>2018/9/6</date>
     <description>这是一个做空的示例</description>
 </organ>
-
 <![CDATA[
+
 ]]>
 </collection>

@@ -15,6 +15,8 @@ class Organ(object):
 
         self.name = data.getElementsByTagName("name")[0].childNodes[0].data
         self.neuronList = data.getElementsByTagName("neuron")[0].childNodes[0].data.split(',')
+        self.cointype = data.getElementsByTagName("cointype")[0].childNodes[0].data
+        self.timetype = data.getElementsByTagName("timetype")[0].childNodes[0].data
         self.buytype = data.getElementsByTagName("buytype")[0].childNodes[0].data
         self.selltype = data.getElementsByTagName("selltype")[0].childNodes[0].data
         self.shortbuytype = data.getElementsByTagName("shortbuytype")[0].childNodes[0].data
@@ -41,6 +43,7 @@ class Organ(object):
 
     def getHeartBeat(self,priceFrm):
        
+        print('getHeartBeat',self.cointype,self.timetype)
         result = self.tradeResult(priceFrm.loc[0:len(priceFrm)-2,:])
 
         openTime = priceFrm.loc[len(priceFrm)-1,'OpenTime']

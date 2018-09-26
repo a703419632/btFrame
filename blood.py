@@ -30,7 +30,7 @@ class Blood(object):
             if organData.getElementsByTagName("name")[0].childNodes[0].data not in self.organDict:
                 organ = Organ(organData,neuronXMLDict)
 
-                self.eventManager.AddEventListener('OnHeartBeat', organ.getHeartBeat)
+                self.eventManager.AddEventListener(('OnHeartBeat_%s_%s' % (organ.cointype,organ.timetype)), organ.getHeartBeat)
 
                 self.organDict[organData.getElementsByTagName("name")[0].childNodes[0].data] = organ
             organList.append(organData.getElementsByTagName("name")[0].childNodes[0].data)
@@ -39,11 +39,25 @@ class Blood(object):
             if key not in organList:
                 print('del organ:',key)
                 delorgan = self.organDict.pop(key)
-                self.eventManager.RemoveEventListener('OnHeartBeat', delorgan.getHeartBeat)
+                self.eventManager.RemoveEventListener('OnHeartBeat_%s_%s' % (delorgan.cointype,delorgan.timetype), delorgan.getHeartBeat)
                 del(delorgan)
 
 
         return self.organDict
+
+    def getTimeArr(self):
+        timearr = []
+        for organ in self.organDict:
+            if self.organDict[organ].timetype not in timearr:
+                timearr.append(self.organDict[organ].timetype)
+        return timearr
+
+    def getCoinArr(self):
+        coinarr = []
+        for organ in self.organDict:
+            if self.organDict[organ].cointype not in coinarr:
+                coinarr.append(self.organDict[organ].cointype)
+        return coinarr
 
     def getNeuron(self):
         neuronXML = self.getXMLDatabyPath(self.PATH_BASENEURON).getElementsByTagName("neuron")
